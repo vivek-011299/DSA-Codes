@@ -1,0 +1,26 @@
+/* Write a function to delete a node in a singly-linked list. You will not be given access to the head of the list, instead you will be given access to the node
+to be deleted directly.
+
+It is guaranteed that the node to be deleted is not a tail node in the list.
+*/
+
+
+Solution :-
+
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {                                 // The node to be deleted is passed in the function deleteNode() and NOT the head node.
+        ListNode *p=node;
+        while(node->next)
+        {
+            node->val=node->next->val;
+            node=node->next;
+        }
+        while(p->next!=node)
+        {
+            p=p->next;
+        }
+        p->next=NULL;
+    }
+};
