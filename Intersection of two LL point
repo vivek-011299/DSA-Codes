@@ -1,0 +1,36 @@
+/*
+Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+*/
+
+
+Solution:-
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *p=headA;
+        ListNode *q=headB;
+        int c=0;                                                       //Counter variable for showing that the p pointer have changed it's starting point. i.e. gone to headB
+        int d=0;                                                       //Counter variable for showing that the q pointer have changed it's starting point. i.e. gone to headA
+        while(p && q && p!=q)
+        {
+                p=p->next;
+                q=q->next;
+            if(p==NULL && c==0)
+            {
+                p=headB;
+                c=1;
+            }
+            if(q==NULL && d==0)
+            {
+                q=headA;
+                d=1;
+            }
+        }
+        if(!p || !q)
+        {
+            return NULL;
+        }
+        else return p;
+    }
+};
