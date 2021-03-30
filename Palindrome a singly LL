@@ -1,0 +1,47 @@
+/*
+Given the head of a singly linked list, return true if it is a palindrome.
+*/
+
+
+
+Solution:-
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode *p=head;               //Fast Pointer
+        ListNode *q=head;               // Slow Pointer
+        ListNode *r=head;               //Pointer that keeps the track of the previous node of the q pointer i.e. slow pointer
+        while(p && p->next)
+        {
+            r=q;
+            p=p->next->next;
+            q=q->next;
+            
+        }                                // After this loop, we get the middle element from where we will reverse the list now.
+        r->next=NULL;                    //Making the previous node's next as null.
+        r=q->next;
+        q->next=NULL;
+        while(r)                        //Reversing
+        {
+            p=q;
+            q=r;
+            r=r->next;
+            q->next=p;
+        }
+        r=head;
+        while(q && r)                   //Now checking for palindrome
+        {
+            if(q->val!=r->val)
+            {
+                return false;
+            }
+            else
+            {
+                q=q->next;
+                r=r->next;
+            }
+        }
+        return true;
+    }
+};
