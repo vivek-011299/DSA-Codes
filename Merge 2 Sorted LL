@@ -1,0 +1,62 @@
+/*
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+*/
+
+
+Solution:-
+
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode *p=l1,*q=l2,*r=NULL,*head=NULL;
+        if(p==NULL)
+        {
+            return l2;
+        }                                                                   //If any one of the list is empty, it returns the another list
+        if(q==NULL)
+        {
+            return l1;
+        }
+        if(p && q && p->val<q->val)                                           
+        {
+            r=p;                                                            // If condition to set the head pointer of the final linked list
+            head=p;
+            p=p->next;
+        }
+        else if(p && q && p->val>=q->val){
+            r=q;
+            head=q;
+            q=q->next;
+        }
+        while(p && q)
+        {
+            if(p->val>q->val)                                                 // Merging of the lists
+            {     
+                r->next=q;
+                r=q;
+                q=q->next;
+            }
+            else
+            {
+                r->next=p;
+                r=p;
+                p=p->next;
+            }
+        }
+        
+            while(p)
+        {
+            r->next=p;                                                  //If any list is completed first, then the remaining list is taken.
+            r=p;
+            p=p->next;
+        }
+        while(q)
+        {
+            r->next=q;
+            r=q;
+            q=q->next;
+        }
+        return head;
+    }
+};
