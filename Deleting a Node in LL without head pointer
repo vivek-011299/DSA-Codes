@@ -11,16 +11,7 @@ Solution :-
 class Solution {
 public:
     void deleteNode(ListNode* node) {                                 // The node to be deleted is passed in the function deleteNode() and NOT the head node.
-        ListNode *p=node;
-        while(node->next)
-        {
-            node->val=node->next->val;
-            node=node->next;
-        }
-        while(p->next!=node)
-        {
-            p=p->next;
-        }
-        p->next=NULL;
+        node->data=node->next->data;
+        node->next=node->next->next;
     }
 };
