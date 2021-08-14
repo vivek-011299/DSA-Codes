@@ -20,14 +20,10 @@ public:
             q=q->next;
             if(p==q)
             {
-                break;
+                return true;
             }
         }
-        if(p==NULL || p->next==NULL)
-        {
-            return false;
-        }
-        else return true;
+       return false;
         
     }
 };
