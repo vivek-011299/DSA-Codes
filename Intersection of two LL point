@@ -10,27 +10,24 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *p=headA;
         ListNode *q=headB;
-        int c=0;                                                       //Counter variable for showing that the p pointer have changed it's starting point. i.e. gone to headB
-        int d=0;                                                       //Counter variable for showing that the q pointer have changed it's starting point. i.e. gone to headA
-        while(p && q && p!=q)
+        while(p!=q)
         {
-                p=p->next;
-                q=q->next;
-            if(p==NULL && c==0)
+            
+            p=p->next;
+            q=q->next;
+            if(p==q)
+            {
+                return p;
+            }
+            if(p==NULL)
             {
                 p=headB;
-                c=1;
             }
-            if(q==NULL && d==0)
+            if(q==NULL)
             {
                 q=headA;
-                d=1;
             }
         }
-        if(!p || !q)
-        {
-            return NULL;
-        }
-        else return p;
+        return p;
     }
 };
